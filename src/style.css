@@ -66,11 +66,12 @@ main {
   display: flex;
 }
 .weather-icon {
-  font-size: 60px;
-  margin-top: 10px;
+  width: 90px;
+  height: 90px;
 }
 .weather-temp {
   font-size: 90px;
+  line-height: 90px;
   font-weight: bold;
 }
 .weather-unit {
