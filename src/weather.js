@@ -17,6 +17,7 @@ function updateWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}"class = "weather-icon" />`;
+  getForecast(response.data.city);
 }
 
 //Arrays for days
@@ -44,7 +45,7 @@ function formatDate(date) {
 
 function searchCity(city) {
   let apiKey = "11cb60e5ofea031ab3tc8e1af4a45bbb";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(updateWeather);
 }
 
@@ -63,7 +64,15 @@ searchCity("Paris");
 
 /*Forecast*/
 
-function showForecast() {
+function getForecast(city) {
+  let apiKey = "11cb60e5ofea031ab3tc8e1af4a45bbb";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(showForecast);
+  console.log(apiUrl);
+}
+
+function showForecast(response) {
+  console.log(response.data);
   let dayz = ["Tues", "Wed", "Thu", "Fri", "Sat"];
   let forecastHtml = "";
 
